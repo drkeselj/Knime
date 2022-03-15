@@ -9,6 +9,8 @@ import java.util.Set;
  * @author KNIME GmbH
  */
 public class Statistics {
+	
+	private volatile static Statistics instance;
 
 	private final Set<String> linesRead = new HashSet<>();
 
@@ -47,7 +49,9 @@ public class Statistics {
 	 * @return the shared {@link Statistics} instance to use.
 	 */
 	public static Statistics getInstance() {
-		// FIXME: needs to be implemented
-		return null;
+		if (instance == null) {
+			instance = new Statistics();
+		}
+		return instance;
 	}
 }
